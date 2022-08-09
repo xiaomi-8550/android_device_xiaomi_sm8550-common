@@ -1469,10 +1469,6 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 # Trustzone
 vendor/app/TrustZoneAccessService/TrustZoneAccessService.apk
 
-# USB
-vendor/bin/init.qcom.usb.sh
-vendor/etc/init/hw/init.qcom.usb.rc
-
 # VM Mem
 vendor/lib64/libvmmem.so
 
