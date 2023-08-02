@@ -232,7 +232,9 @@ class XiaomiSm8550UdfpsHander : public UdfpsHandler {
             req.base.disp_id = MI_DISP_PRIMARY;
             req.local_hbm_value = LHBM_TARGET_BRIGHTNESS_OFF_FINGER_UP;
             ioctl(disp_fd_.get(), MI_DISP_IOCTL_SET_LOCAL_HBM, &req);
-            setFodStatus(FOD_STATUS_OFF);
+            if (!enrolling) {
+                setFodStatus(FOD_STATUS_OFF);
+            }
         }
 
         /* vendorCode
@@ -247,6 +249,25 @@ class XiaomiSm8550UdfpsHander : public UdfpsHandler {
 
     void cancel() {
         LOG(DEBUG) << __func__;
+        enrolling = false;
+
+        setFodStatus(FOD_STATUS_OFF);
+    }
+
+    void preEnroll() {
+        LOG(DEBUG) << __func__;
+        enrolling = true;
+    }
+
+    void enroll() {
+        LOG(DEBUG) << __func__;
+        enrolling = true;
+    }
+
+    void postEnroll() {
+        LOG(DEBUG) << __func__;
+        enrolling = false;
+
         setFodStatus(FOD_STATUS_OFF);
     }
 
@@ -254,6 +275,7 @@ class XiaomiSm8550UdfpsHander : public UdfpsHandler {
     fingerprint_device_t* mDevice;
     android::base::unique_fd touch_fd_;
     android::base::unique_fd disp_fd_;
+    bool enrolling = false;
     uint32_t lastPressX, lastPressY;
 
     void setFodStatus(int value) {
