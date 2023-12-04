@@ -2606,6 +2606,7 @@ vendor/etc/init/init.qti.qcv.rc
 vendor/bin/qesdk-manager
 vendor/etc/init/qesdk-manager.rc
 vendor/etc/seccomp_policy/qesdk.policy
+vendor/lib/libqesdk2_0.so
 vendor/lib64/libqesdk2_0.so
 vendor/lib64/libqesdk_manager.so
 vendor/lib64/libqti-qesdk-secure.so
