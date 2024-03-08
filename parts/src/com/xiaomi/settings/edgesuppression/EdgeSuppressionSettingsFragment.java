@@ -14,8 +14,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
-import android.widget.Switch;
 
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -24,12 +25,11 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.SeekBarPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
-import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 import com.xiaomi.settings.R;
 
 public class EdgeSuppressionSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
-        OnMainSwitchChangeListener {
+        OnCheckedChangeListener {
 
     private static final String TAG = "XiaomiPartsEdgeSuppressionSettingsFragment";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
@@ -77,7 +77,7 @@ public class EdgeSuppressionSettingsFragment extends PreferenceFragment implemen
     }
 
     @Override
-    public void onSwitchChanged(Switch switchView, boolean isChecked) {
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         float value = isChecked ? (float) (mSharedPreferences.getInt("edgesuppression_width", 60) + 20) / 100 : 0.0f;
         updateEdgeSuppression(value);
     }
