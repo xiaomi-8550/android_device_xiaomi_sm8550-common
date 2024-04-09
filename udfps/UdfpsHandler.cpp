@@ -209,15 +209,6 @@ class XiaomiSm8550UdfpsHander : public UdfpsHandler {
         lastPressX = x;
         lastPressY = y;
 
-        /*
-         * On fuxi, the waiting for finger message is not reliably sent...
-         * The finger down message is only reliably sent when the screen is turned off, so enable
-         * fod_status better late than never.
-         */
-        if (mSku == "fuxi") {
-            setFodStatus(FOD_STATUS_ON);
-        }
-
         // Ensure touchscreen is aware of the press state, ideally this is not needed
         setFingerDown(true);
     }
