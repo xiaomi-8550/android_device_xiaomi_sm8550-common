@@ -53,7 +53,7 @@
         </service>
 
         <service
-            android:name=".touch.AlwaysOnFingerprintService"
+            android:name=".touch.TapToWakeService"
             android:exported="true">
         </service>
 
