@@ -1,10 +1,10 @@
 //
-// Copyright (C) 2023 Paranoid Android
+// Copyright (C) 2024 Paranoid Android
 //
 // SPDX-License-Identifier: Apache-2.0
 //
 
 runtime_resource_overlay {
-    name: "Xiaomi13DolbysNuwa",
+    name: "Xiaomi13DolbyFuxi",
     device_specific: true,
 }

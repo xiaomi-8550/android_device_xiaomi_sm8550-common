@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="dolby_stereo_entries">
-        <item>@string/dolby_low</item>
         <item>@string/dolby_medium</item>
-        <item>@string/dolby_high</item>
-        <item>@string/dolby_max</item>
     </string-array>
 
     <string-array name="dolby_stereo_values">
-        <item>4</item>
-        <item>24</item>
-        <item>44</item>
-        <item>64</item>
+        <item>35</item>
     </string-array>
 </resources>

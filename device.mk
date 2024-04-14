@@ -295,7 +295,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Xiaomi13CarrierConfigRes \
     Xiaomi13CarrierConfigResMiui \
-    Xiaomi13DolbysNuwa \
+    Xiaomi13DolbyFuxi \
     Xiaomi13Frameworks \
     Xiaomi13FrameworksAOSPA \
     Xiaomi13FrameworksNuwa \

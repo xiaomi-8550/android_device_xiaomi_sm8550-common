@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="dolby_low">Low</string>
-    <string name="dolby_medium">Medium</string>
-    <string name="dolby_high">High</string>
-    <string name="dolby_max">Max</string>
-</resources>
