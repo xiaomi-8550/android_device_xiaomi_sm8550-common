@@ -28,9 +28,11 @@ public class TapToWakeService extends Service {
     private static final String TAG = "XiaomiPartsTapToWakeService";
     private static final boolean DEBUG = true;
 
-    private static final String SECURE_KEY_TAP = "doze_tap_gesture";
+    private static final String SECURE_KEY_TAP_SINGLE = Settings.Secure.DOZE_TAP_SCREEN_GESTURE;
+    private static final String SECURE_KEY_TAP_DOUBLE = Settings.Secure.DOZE_DOUBLE_TAP_GESTURE;
 
-    private boolean mEnabled;
+    private boolean mSingleEnabled;
+    private boolean mDoubleEnabled;
 
     private ContentResolver mContentResolver;
     private ScreenStateReceiver mScreenStateReceiver;
@@ -79,7 +81,7 @@ public class TapToWakeService extends Service {
             int displayState = getDisplay().getState();
             boolean displayStateOff = displayState != Display.STATE_ON;
             TfWrapper.setTouchFeature(
-                    new TfWrapper.TfParams(/*TOUCH_AOD_ENABLE*/ 11, displayStateOff && mEnabled ? 1 : 0));
+                    new TfWrapper.TfParams(/*TOUCH_AOD_ENABLE*/ 11, displayStateOff && mSingleEnabled ? 1 : 0));
         }
     }
 
@@ -91,18 +93,24 @@ public class TapToWakeService extends Service {
         public void register() {
             if (DEBUG) Log.d(TAG, "SettingsObserver: register");
             mContentResolver.registerContentObserver(
-                    Settings.Secure.getUriFor(SECURE_KEY_TAP), false, this);
+                    Settings.Secure.getUriFor(SECURE_KEY_TAP_SINGLE), false, this);
+            mContentResolver.registerContentObserver(
+                    Settings.Secure.getUriFor(SECURE_KEY_TAP_DOUBLE), false, this);
         }
 
         void update() {
-            mEnabled = Settings.Secure.getInt(mContentResolver, SECURE_KEY_TAP, 1) != 0;
-            if (DEBUG) Log.d(TAG, "SettingsObserver: SECURE_KEY_TAP: " + mEnabled);
+            mSingleEnabled = Settings.Secure.getInt(mContentResolver, SECURE_KEY_TAP_SINGLE, 1) != 0;
+            mDoubleEnabled = Settings.Secure.getInt(mContentResolver, SECURE_KEY_TAP_DOUBLE, 1) != 0;
+            if (DEBUG) Log.d(TAG, "SettingsObserver: SECURE_KEY_TAP_SINGLE: " + mSingleEnabled + ", SECURE_KEY_TAP_DOUBLE: " + mDoubleEnabled);
+            TfWrapper.setTouchFeature(
+                    new TfWrapper.TfParams(/*TOUCH_DOUBLETAP_ENABLE*/ 14, mDoubleEnabled ? 1 : 0));
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (DEBUG) Log.d(TAG, "SettingsObserver: onChange: " + uri.toString());
-            if (uri.equals(Settings.Secure.getUriFor(SECURE_KEY_TAP))) {
+            if (uri.equals(Settings.Secure.getUriFor(SECURE_KEY_TAP_SINGLE))
+                    || uri.equals(Settings.Secure.getUriFor(SECURE_KEY_TAP_DOUBLE))) {
                 update();
             }
         }
