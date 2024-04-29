@@ -306,7 +306,6 @@ PRODUCT_PACKAGES += \
     Xiaomi13Settings2210132G \
     Xiaomi13Settings2211133C \
     Xiaomi13Settings2211133G \
-    Xiaomi13SettingsAOSPA \
     Xiaomi13SettingsProvider \
     Xiaomi13SettingsProviderNuwa \
     Xiaomi13SystemUI \

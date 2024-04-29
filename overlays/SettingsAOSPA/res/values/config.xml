@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Whether device supports increased touch sensitvity -->
-    <bool name="config_supportTouchPollingMode">true</bool>
-</resources>
