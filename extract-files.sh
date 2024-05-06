@@ -61,9 +61,6 @@ function blob_fixup() {
         odm/lib64/hw/displayfeature.default.so)
             "${PATCHELF}" --replace-needed "libstagefright_foundation.so" "libstagefright_foundation-v33.so" "${2}"
             ;;
-        odm/lib64/hw/vendor.xiaomi.sensor.citsensorservice@2.0-impl.so | odm/overlayfs/nuwa/odm/lib64/hw/vendor.xiaomi.sensor.citsensorservice@2.0-impl.so)
-            sed -i 's/_ZN13DisplayConfig10ClientImpl13ClientImplGetENSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEPNS_14ConfigCallbackE/_ZN13DisplayConfig10ClientImpl4InitENSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEPNS_14ConfigCallbackE\x0\x0\x0\x0\x0\x0\x0\x0\x0\x0/g' "${2}"
-            ;;
         odm/lib64/libailab_rawhdr.so | odm/lib64/libxmi_high_dynamic_range_cdsp.so | odm/overlayfs/nuwa/odm/lib64/libailab_rawhdr.so | odm/overlayfs/nuwa/odm/lib64/libxmi_high_dynamic_range_cdsp.so)
             "${ANDROID_ROOT}"/prebuilts/clang/host/linux-x86/clang-r450784e/bin/llvm-strip --strip-debug "${2}"
             ;;

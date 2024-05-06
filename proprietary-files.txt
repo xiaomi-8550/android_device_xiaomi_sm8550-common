@@ -1803,7 +1803,7 @@ vendor/lib64/vendor.xiaomi.sensor.citsensorservice@2.0.so
 
 # CIT Sensor (NUWA) - from nuwa_global-user 13 TKQ1.221114.001 V816.0.4.0.UMBMIXM release-keys
 odm/etc/cit_param_config.json:odm/overlayfs/nuwa/odm/etc/cit_param_config.json|688e56486b99173b4c395b0e251b62b546f47ba3
-odm/lib64/hw/vendor.xiaomi.sensor.citsensorservice@2.0-impl.so:odm/overlayfs/nuwa/odm/lib64/hw/vendor.xiaomi.sensor.citsensorservice@2.0-impl.so|4ab2e17826548852ed37efe382de7d4bf27c45c7
+odm/lib64/hw/vendor.xiaomi.sensor.citsensorservice@2.0-impl.so:odm/overlayfs/nuwa/odm/lib64/hw/vendor.xiaomi.sensor.citsensorservice@2.0-impl.so|60d9d0cbd1bc502bcbdf3fe34343b8ffe9aee321
 
 # CNE
 vendor/app/CneApp/CneApp.apk
@@ -1979,6 +1979,7 @@ vendor/lib64/vendor.qti.diaghal@1.0.so
 
 # Display
 vendor/bin/hw/vendor.qti.hardware.display.composer-service
+vendor/lib64/libdisplayconfig.qti.so
 vendor/lib64/libdisplaydebug.so
 vendor/lib64/libhdr_hbm.so
 vendor/lib64/libhdrdynamic.so
