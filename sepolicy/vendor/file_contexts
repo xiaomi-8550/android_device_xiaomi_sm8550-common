@@ -17,10 +17,10 @@
 /(odm|vendor/odm|vendor|system/vendor)/bin/hw/vendor\.nxp\.hardware\.nfc@2\.0-service u:object_r:hal_nfc_default_exec:s0
 
 # OverlayFS
-/odm/overlayfs/nuwa/product/media/bootanimation.zip u:object_r:system_file:s0
-/odm/overlayfs/nuwa/(odm|vendor)(/.*)? u:object_r:vendor_file:s0
-/odm/overlayfs/nuwa/(odm|vendor)/etc(/.*)? u:object_r:vendor_configs_file:s0
-/odm/overlayfs/nuwa/(odm|vendor)/lib(64)?/hw u:object_r:vendor_hal_file:s0
+/odm/overlayfs/(fuxi|nuwa)/product/media/bootanimation.zip u:object_r:system_file:s0
+/odm/overlayfs/(fuxi|nuwa)/(odm|vendor)(/.*)? u:object_r:vendor_file:s0
+/odm/overlayfs/(fuxi|nuwa)/(odm|vendor)/etc(/.*)? u:object_r:vendor_configs_file:s0
+/odm/overlayfs/(fuxi|nuwa)/(odm|vendor)/lib(64)?/hw u:object_r:vendor_hal_file:s0
 
 # SLA
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.sla\.service\@1\.0-service u:object_r:hal_slaservice_qti_exec:s0
