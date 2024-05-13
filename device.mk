@@ -298,6 +298,7 @@ PRODUCT_PACKAGES += \
     Xiaomi13DolbyFuxi \
     Xiaomi13Frameworks \
     Xiaomi13FrameworksAOSPA \
+    Xiaomi13FrameworksFuxi \
     Xiaomi13FrameworksNuwa \
     Xiaomi13Nfc \
     Xiaomi13SecureElement \
@@ -306,13 +307,16 @@ PRODUCT_PACKAGES += \
     Xiaomi13Settings2210132G \
     Xiaomi13Settings2211133C \
     Xiaomi13Settings2211133G \
-    Xiaomi13SettingsProvider \
+    Xiaomi13SettingsProviderFuxi \
     Xiaomi13SettingsProviderNuwa \
     Xiaomi13SystemUI \
     Xiaomi13SystemUIAOSPA \
+    Xiaomi13SystemUIFuxi \
     Xiaomi13SystemUINuwa \
     Xiaomi13WifiRes \
     Xiaomi13WifiResMainline \
+    Xiaomi13WifiResFuxi \
+    Xiaomi13WifiResFuxiMainline \
     Xiaomi13WifiResNuwa \
     Xiaomi13WifiResNuwaMainline
 

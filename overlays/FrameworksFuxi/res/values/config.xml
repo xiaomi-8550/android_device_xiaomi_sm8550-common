@@ -9,8 +9,16 @@
          For example, no higher refresh rate if
              display brightness <= disp0 && ambient brightness <= amb0
              || display brightness <= disp1 && ambient brightness <= amb1 -->
-    <integer-array name="config_brightnessThresholdsOfPeakRefreshRate" />
-    <integer-array name="config_ambientThresholdsOfPeakRefreshRate" />
+    <integer-array name="config_brightnessThresholdsOfPeakRefreshRate">
+        <!-- System brightness for 10 nits: round((10-2)/(1000-2)*(255-1)+1) = 3 -->
+        <item>10</item> <!-- 33% UI brightness -->
+        <!-- System brightness for 15 nits: round((15-2)/(1000-2)*(255-1)+1) = 4 -->
+        <item>14</item> <!-- 40% UI brightness -->
+    </integer-array>
+    <integer-array name="config_ambientThresholdsOfPeakRefreshRate">
+        <item>-1</item>
+        <item>20</item>
+    </integer-array>
 
     <!-- The bounding path of the cutout region of the main built-in display.
          Must either be empty if there is no cutout region, or a string that is parsable by
@@ -29,7 +37,7 @@
                 <string ...>M -5,0 L -5,10 L 5,10 L 5,0 Z @dp</string>
          @see https://www.w3.org/TR/SVG/paths.html#PathData
          -->
-    <string name="config_mainBuiltInDisplayCutout" translatable="false">M -42,64 M 42,64 A 42,42 0 1,0 -42,64 A 42,42 0 1,0 42,64 Z</string>
+    <string name="config_mainBuiltInDisplayCutout" translatable="false">M -34,64 M 34,64 A 34,34 0 1,0 -34,64 A 34,34 0 1,0 34,64 Z</string>
 
     <!--Like config_mainBuiltInDisplayCutout, but this path is used to report the
         one single bounding rect per device edge to the app via
@@ -37,7 +45,7 @@
         appearance of the cutout as much as possible, and may be smaller than
         config_mainBuiltInDisplayCutout
         -->
-    <string name="config_mainBuiltInDisplayCutoutRectApproximation">M 0,0 H -42 V 122 H 42 V 0 H 0 Z</string>
+    <string name="config_mainBuiltInDisplayCutoutRectApproximation">M 0,0 H -34 V 104 H 34 V 0 H 0 Z</string>
 
     <!--Whether the display cutout region of the main built-in display should be forced to
         black in software (to avoid aliasing or emulate a cutout that is not physically existent).
@@ -54,8 +62,8 @@
 
     <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
     <integer-array name="config_udfps_sensor_props" translatable="false" >
-        <item>720</item>
-        <item>2541</item>
-        <item>123</item>
+        <item>540</item>
+        <item>2150</item>
+        <item>105</item>
     </integer-array>
 </resources>

@@ -1,10 +1,10 @@
 //
-// Copyright (C) 2023 Paranoid Android
+// Copyright (C) 2024 Paranoid Android
 //
 // SPDX-License-Identifier: Apache-2.0
 //
 
 runtime_resource_overlay {
-    name: "Xiaomi13SettingsProvider",
+    name: "Xiaomi13SettingsProviderFuxi",
     device_specific: true,
 }
