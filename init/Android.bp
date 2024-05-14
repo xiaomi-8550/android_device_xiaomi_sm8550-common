@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2023 Paranoid Android
+// Copyright (C) 2023-2024 Paranoid Android
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -13,13 +13,6 @@ prebuilt_etc {
 prebuilt_etc {
     name: "init.target.rc",
     src: "init.target.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.mi_overlay.rc",
-    src: "init.mi_overlay.rc",
     sub_dir: "init/hw",
     vendor: true,
 }
@@ -53,8 +46,8 @@ prebuilt_etc {
 }
 
 cc_library_static {
-    name: "libinit_xiaomi13",
-    srcs: ["init_xiaomi13.cpp"],
+    name: "libinit_xiaomi_sm8550",
+    srcs: ["init_xiaomi8550.cpp"],
     recovery_available: true,
     whole_static_libs: ["libbase"],
     include_dirs: [

@@ -14,7 +14,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/xiaomi/xiaomi13/xiaomi13-vendor.mk)
+$(call inherit-product, vendor/xiaomi/sm8550-common/sm8550-common-vendor.mk)
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -100,10 +100,6 @@ PRODUCT_COPY_FILES += \
 # Authsecret
 PRODUCT_PACKAGES += \
     android.hardware.authsecret@1.0.vendor
-
-# Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/aospa/bootanimation/1440/bootanimation.zip:$(TARGET_COPY_OUT_ODM)/overlayfs/nuwa/product/media/bootanimation.zip
 
 # Boot Control
 PRODUCT_PACKAGES += \
@@ -194,7 +190,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc \
-    init.mi_overlay.rc \
     init.mi_perf.rc \
     init.mi_service.rc \
     init.mi_udfps.rc \
@@ -202,9 +197,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
-
-# Kernel Binary
-KERNEL_PREBUILT_DIR := device/xiaomi/xiaomi13-kernel
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -293,32 +285,17 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    Xiaomi13CarrierConfigRes \
-    Xiaomi13CarrierConfigResMiui \
-    Xiaomi13DolbyFuxi \
-    Xiaomi13Frameworks \
-    Xiaomi13FrameworksAOSPA \
-    Xiaomi13FrameworksFuxi \
-    Xiaomi13FrameworksNuwa \
-    Xiaomi13Nfc \
-    Xiaomi13SecureElement \
-    Xiaomi13Settings \
-    Xiaomi13Settings2210132C \
-    Xiaomi13Settings2210132G \
-    Xiaomi13Settings2211133C \
-    Xiaomi13Settings2211133G \
-    Xiaomi13SettingsProviderFuxi \
-    Xiaomi13SettingsProviderNuwa \
-    Xiaomi13SystemUI \
-    Xiaomi13SystemUIAOSPA \
-    Xiaomi13SystemUIFuxi \
-    Xiaomi13SystemUINuwa \
-    Xiaomi13WifiRes \
-    Xiaomi13WifiResMainline \
-    Xiaomi13WifiResFuxi \
-    Xiaomi13WifiResFuxiMainline \
-    Xiaomi13WifiResNuwa \
-    Xiaomi13WifiResNuwaMainline
+    Xiaomi8550CarrierConfigRes \
+    Xiaomi8550CarrierConfigResMiui \
+    Xiaomi8550Frameworks \
+    Xiaomi8550FrameworksAOSPA \
+    Xiaomi8550Nfc \
+    Xiaomi8550SecureElement \
+    Xiaomi8550Settings \
+    Xiaomi8550SystemUI \
+    Xiaomi8550SystemUIAOSPA \
+    Xiaomi8550WifiRes \
+    Xiaomi8550WifiResMainline \
 
 # Parts
 PRODUCT_PACKAGES += \
@@ -331,11 +308,6 @@ PRODUCT_PACKAGES += \
 # Powershare
 PRODUCT_PACKAGES += \
     vendor.aospa.powershare-service
-
-# Properties
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/properties/odm_fuxi.prop:$(TARGET_COPY_OUT_ODM)/etc/build_fuxi.prop \
-    $(LOCAL_PATH)/configs/properties/odm_nuwa.prop:$(TARGET_COPY_OUT_ODM)/etc/build_nuwa.prop
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -353,7 +325,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_nuwa/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.hifi_sensors.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.hifi_sensors.xml \

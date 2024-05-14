@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/xiaomi/xiaomi13
+COMMON_PATH := device/xiaomi/sm8550-common
 
 # A/B
 AB_OTA_UPDATER := true
@@ -46,33 +46,27 @@ SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := kalama
+TARGET_BOOTLOADER_BOARD_NAME ?= kalama
 TARGET_NO_BOOTLOADER := true
 
 # Build
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
-# Display
-TARGET_SCREEN_DENSITY := 420
-
 # DTB
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
-# Filesystem
-TARGET_FS_CONFIG_GEN += $(DEVICE_PATH)/configs/config.fs
-
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/vintf/framework_matrix_xiaomi.xml
+    $(COMMON_PATH)/configs/vintf/framework_matrix_xiaomi.xml
 
 DEVICE_MANIFEST_FILE += \
-    $(DEVICE_PATH)/configs/vintf/manifest_kalama.xml \
-    $(DEVICE_PATH)/configs/vintf/manifest_xiaomi.xml
+    $(COMMON_PATH)/configs/vintf/manifest_kalama.xml \
+    $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_xiaomi13
-TARGET_RECOVERY_DEVICE_MODULES := libinit_xiaomi13
+TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_xiaomi_sm8550
+TARGET_RECOVERY_DEVICE_MODULES := libinit_xiaomi_sm8550
 
 # Kernel
 BOARD_BOOTCONFIG := \
@@ -95,13 +89,10 @@ TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 
 # Kernel Modules
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
-
-# OTA
-TARGET_OTA_ASSERT_DEVICE := fuxi|nuwa
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
@@ -136,22 +127,22 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 TARGET_POWERSHARE_NODE := /sys/class/qcom-battery/reverse_chg_mode
 
 # Properties
-TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/properties/system.prop
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
+TARGET_ODM_PROP += $(COMMON_PATH)/configs/properties/odm.prop
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/configs/properties/system.prop
+TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/properties/vendor.prop
 
 # Recovery
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/init/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 80
 TARGET_USERIMAGES_USE_F2FS := true
 
 # SELinux
 include device/xiaomi/sepolicy/SEPolicy.mk
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
 
 # Sensors
 SOONG_CONFIG_NAMESPACES += SENSORS_XIAOMI

@@ -5,6 +5,6 @@
 //
 
 runtime_resource_overlay {
-    name: "Xiaomi13Nfc",
+    name: "Xiaomi8550Nfc",
     device_specific: true,
 }

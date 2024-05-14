@@ -5,6 +5,6 @@
 //
 
 runtime_resource_overlay {
-    name: "Xiaomi13Settings",
+    name: "Xiaomi8550Settings",
     device_specific: true,
 }

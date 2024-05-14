@@ -5,6 +5,6 @@
 //
 
 runtime_resource_overlay {
-    name: "Xiaomi13SecureElement",
+    name: "Xiaomi8550SecureElement",
     device_specific: true,
 }
