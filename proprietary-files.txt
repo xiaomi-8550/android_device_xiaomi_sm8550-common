@@ -142,18 +142,27 @@ vendor/lib64/vendor.dolby.hardware.dms@2.0.so
 
 # Audio (FX modules)
 vendor/lib64/soundfx/libasphere.so
+vendor/lib64/soundfx/libaudiopreprocessing.so
+vendor/lib64/soundfx/libbundlewrapper.so
 vendor/lib64/soundfx/libdlbvol.so
+vendor/lib64/soundfx/libdownmix.so
+vendor/lib64/soundfx/libdynproc.so
+vendor/lib64/soundfx/libeffectproxy.so
+vendor/lib64/soundfx/libhapticgenerator.so
 vendor/lib64/soundfx/libhwdap.so
+vendor/lib64/soundfx/libldnhncr.so
 vendor/lib64/soundfx/libmisoundfx.so
 vendor/lib64/soundfx/libqcompostprocbundle.so
 vendor/lib64/soundfx/libqcomvisualizer.so
 vendor/lib64/soundfx/libqcomvoiceprocessing.so
 vendor/lib64/soundfx/libquasar.so
+vendor/lib64/soundfx/libreverbwrapper.so
 vendor/lib64/soundfx/libshoebox.so
 vendor/lib64/soundfx/libspatializer.so
 vendor/lib64/soundfx/libswgamedap.so
 vendor/lib64/soundfx/libswspatializer.so
 vendor/lib64/soundfx/libswvqe.so
+vendor/lib64/soundfx/libvisualizer.so
 vendor/lib64/soundfx/libvolumelistener.so
 
 # Batterysecret
