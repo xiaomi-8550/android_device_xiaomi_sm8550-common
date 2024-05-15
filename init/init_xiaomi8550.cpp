@@ -78,6 +78,14 @@ void vendor_load_properties() {
             set_ro_build_prop("model", "2210132G");
             set_ro_build_prop("name", "nuwa_global");
         }
+    } else if (sku == "ishtar") { // Xiaomi 13 Ultra
+        if (region == "CN") { // China
+            set_ro_build_prop("model", "2304FPN6DC");
+            set_ro_build_prop("name", "ishtar");
+        } else {              // Global
+            set_ro_build_prop("model", "2304FPN6DG");
+            set_ro_build_prop("name", "ishtar_global");
+        }
     }
 
     // Override hardware revision

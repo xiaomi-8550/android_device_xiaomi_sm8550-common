@@ -22,7 +22,7 @@ public class TouchOrientationService extends Service {
 
     @Override
     public void onCreate() {
-        if (Build.SKU.equals("nuwa")) {
+        if (Build.SKU.equals("nuwa") || Build.SKU.equals("ishtar")) {
             if (DEBUG) Log.d(TAG, "Creating service: Stopping TouchOrientationService because device is " + Build.SKU);
             stopSelf();
         }

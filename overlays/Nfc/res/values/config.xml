@@ -3,5 +3,6 @@
     <string-array name="config_skuSupportsSecureNfc">
         <item>fuxi</item>
         <item>nuwa</item>
+        <item>ishtar</item>
     </string-array>
 </resources>

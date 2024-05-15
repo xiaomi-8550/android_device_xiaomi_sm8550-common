@@ -4,6 +4,7 @@
 
 - Xiaomi 13 (fuxi)
 - Xiaomi 13 Pro (nuwa)
+- Xiaomi 13 Ultra (ishtar)
 
 ## Currently supported SoCs
 
