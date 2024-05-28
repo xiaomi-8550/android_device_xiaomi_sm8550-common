@@ -6,7 +6,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter fuxi nuwa ishtar,$(TARGET_DEVICE)),)
+ifneq ($(filter fuxi nuwa ishtar vermeer,$(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 

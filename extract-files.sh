@@ -60,6 +60,9 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        odm/etc/camera/aivsModel_6C06C006 | odm/lib64/libmialgo_aisn.so)
+            split --bytes=20M -d "${2}" "${2}".part
+            ;;
         odm/etc/camera/enhance_motiontuning.xml |odm/etc/camera/night_motiontuning.xml | odm/etc/camera/motiontuning.xml)
             sed -i 's/<?xml=/<?xml /g' "${2}"
             ;;
