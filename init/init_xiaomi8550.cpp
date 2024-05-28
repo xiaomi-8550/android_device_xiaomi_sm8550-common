@@ -86,6 +86,15 @@ void vendor_load_properties() {
             set_ro_build_prop("model", "2304FPN6DG");
             set_ro_build_prop("name", "ishtar_global");
         }
+    } else if (sku == "vermeer") { // POCO F6 Pro / Redmi K70
+        if (region == "CN") { // China - Redmi K70
+            set_ro_build_prop("model", "23113RKC6C");
+            set_ro_build_prop("name", "vermeer");
+            set_ro_build_prop("brand", "Redmi");
+        } else {              // Global - POCO F6 Pro
+            set_ro_build_prop("model", "23113RKC6G");
+            set_ro_build_prop("name", "vermeer_global");
+        }
     }
 
     // Override hardware revision
