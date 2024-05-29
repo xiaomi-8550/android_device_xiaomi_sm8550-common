@@ -36,3 +36,10 @@ service citsensor-hal-2-0 /odm/bin/hw/vendor.xiaomi.sensor.citsensorservice@2.0-
     group system input
     override
     task_profiles ServiceCapacityLow
+
+# Touchscreen
+on boot
+    chown system system /sys/class/touch/touch_dev/gesture_double_tap_enable
+    chown system system /sys/class/touch/touch_dev/gesture_single_tap_enable
+    chmod 0664 /sys/class/touch/touch_dev/gesture_double_tap_enable
+    chmod 0664 /sys/class/touch/touch_dev/gesture_single_tap_enable
