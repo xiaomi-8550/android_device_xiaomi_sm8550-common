@@ -966,6 +966,7 @@ vendor/lib64/android.hardware.nfc@1.2.so
 vendor/lib64/libchrome.so
 vendor/lib64/libsn100u_fw.so
 vendor/lib64/libsn220u_fw.so
+vendor/lib64/libstnfc-auth.so
 vendor/lib64/libvui_dmgr_client.so
 vendor/lib64/nfc_nci.st21nfc.st.so
 vendor/lib64/se_nq_extn_client.so
