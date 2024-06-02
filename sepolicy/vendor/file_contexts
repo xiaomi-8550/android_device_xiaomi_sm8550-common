@@ -16,6 +16,9 @@
 # NFC
 /(odm|vendor/odm|vendor|system/vendor)/bin/hw/vendor\.nxp\.hardware\.nfc@2\.0-service u:object_r:hal_nfc_default_exec:s0
 
+# Sensors
+/(vendor|system/vendor)/bin/nonui-notifier u:object_r:vendor_nonui_notifier_exec:s0
+
 # SLA
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.sla\.service\@1\.0-service u:object_r:hal_slaservice_qti_exec:s0
 
