@@ -57,7 +57,6 @@ ep_pcie_drv.ko
 eud.ko
 frpc-adsprpc.ko
 fsa4480-i2c.ko
-fts_touch_spi.ko
 f_fs_ipc_log.ko
 gcc-crow.ko
 gcc-kalama.ko
