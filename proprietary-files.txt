@@ -1438,13 +1438,8 @@ vendor/bin/time_daemon
 vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
 
-# TouchFeature
-odm/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service
-odm/etc/init/vendor.xiaomi.hw.touchfeature@1.0-service.rc
-odm/etc/vintf/manifest/vendor.xiaomi.hw.touchfeature@1.0-service.xml
+# Touchscreen
 odm/etc/init.panel_info.sh
-odm/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so
-vendor/lib64/vendor.xiaomi.hw.touchfeature@1.0.so
 
 # Trusted Execution Environment Connector
 vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
