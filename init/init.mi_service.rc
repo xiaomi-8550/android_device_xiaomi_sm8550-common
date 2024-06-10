@@ -39,7 +39,9 @@ service citsensor-hal-2-0 /odm/bin/hw/vendor.xiaomi.sensor.citsensorservice@2.0-
 
 # Touchscreen
 on boot
-    chown system system /sys/class/touch/touch_dev/gesture_double_tap_enable
-    chown system system /sys/class/touch/touch_dev/gesture_single_tap_enable
-    chmod 0664 /sys/class/touch/touch_dev/gesture_double_tap_enable
-    chmod 0664 /sys/class/touch/touch_dev/gesture_single_tap_enable
+    chown system system /sys/class/touch/touch_dev/fod_longpress_gesture_enabled
+    chown system system /sys/class/touch/touch_dev/gesture_double_tap_enabled
+    chown system system /sys/class/touch/touch_dev/gesture_single_tap_enabled
+    chmod 0660 /sys/class/touch/touch_dev/fod_longpress_gesture_enabled
+    chmod 0664 /sys/class/touch/touch_dev/gesture_double_tap_enabled
+    chmod 0664 /sys/class/touch/touch_dev/gesture_single_tap_enabled
