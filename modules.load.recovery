@@ -1,7 +1,6 @@
 adsp_sleepmon.ko
 altmode-glink.ko
 arm_smmu.ko
-atmel_mxt_ts.ko
 bam_dma.ko
 bcl_pmic5.ko
 bcl_soc.ko
@@ -52,7 +51,6 @@ debug_symbol.ko
 dispcc-crow.ko
 dispcc-kalama.ko
 dmesg_dumper.ko
-dummy_ts.ko
 dwc3-msm.ko
 ehset.ko
 ep_pcie_drv.ko
@@ -75,7 +73,6 @@ gh_tlmm_vm_mem_access.ko
 gh_virt_wdt.ko
 glink_pkt.ko
 glink_probe.ko
-goodix_ts.ko
 gpucc-crow.ko
 gpucc-kalama.ko
 gunyah.ko
@@ -145,7 +142,6 @@ mtdblock.ko
 mtdoops.ko
 mtd_blkdevs.ko
 nb7vpq904m.ko
-nt36xxx-i2c.ko
 nvme-core.ko
 nvme.ko
 nvmem_qcom-spmi-sdam.ko
