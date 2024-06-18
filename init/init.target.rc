@@ -67,6 +67,8 @@ import /vendor/etc/init/hw/init.mi_service.rc
 import /vendor/etc/init/hw/init.mi_udfps.rc
 import /vendor/etc/init/hw/init.batterysecret.rc
 
+import /odm/etc/init/hw/init.mi_device.rc
+
 on early-init
     write /proc/sys/kernel/printk_devkmsg ratelimited
     export MEMTAG_OPTIONS off
