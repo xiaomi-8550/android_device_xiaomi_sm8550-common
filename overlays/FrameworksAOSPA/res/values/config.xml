@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Pocket Lock -->
-    <bool name="config_pocketModeLightSensorSupported">false</bool>
+    <bool name="config_pocketModeSupported">false</bool>
 
     <!-- Defines the sysfs attribute path used by the device
          to enable/disable DC dimming. -->
