@@ -19,6 +19,7 @@ import android.view.Display.HdrCapabilities;
 import com.xiaomi.settings.display.ColorModeService;
 import com.xiaomi.settings.display.DcDimmingService;
 import com.xiaomi.settings.doze.AodBrightnessService;
+import com.xiaomi.settings.edgesuppression.EdgeSuppressionService;
 import com.xiaomi.settings.touch.TouchOrientationService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
@@ -51,6 +52,8 @@ public class BootCompletedReceiver extends BroadcastReceiver {
                 UserHandle.CURRENT);
 
         // Touchscreen
+        context.startServiceAsUser(new Intent(context, EdgeSuppressionService.class),
+                UserHandle.CURRENT);
         context.startServiceAsUser(new Intent(context, TouchOrientationService.class),
                 UserHandle.CURRENT);
         
