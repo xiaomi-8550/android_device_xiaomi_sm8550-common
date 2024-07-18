@@ -64,12 +64,11 @@ struct NonUiSensorCallback : IEventQueueCallback {
     Return<void> onEvent(const Event& e) {
         /* handle sensor event e */
         LOG(ERROR) << "onEvent scalar: " << e.u.scalar;
-        bool nonUi = e.u.scalar == 1;
 
         // android::base::unique_fd touch_fd_;
         // touch_fd_ = android::base::unique_fd(open(TOUCH_DEV_PATH, O_RDWR));
 
-        int buf[MAX_BUF_SIZE] = {0, Touch_Nonui_Mode, nonUi ? 2 : 0};
+        int buf[MAX_BUF_SIZE] = {0, Touch_Nonui_Mode, static_cast<int>(e.u.scalar)};
         ioctl(open(TOUCH_DEV_PATH, O_RDWR), TOUCH_IOC_SET_CUR_VALUE, &buf);
 
         return Void();
