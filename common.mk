@@ -94,7 +94,6 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-V2-ndk.vendor
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_policy_configuration.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama_qssi/audio_policy_configuration.xml
 
 # Authsecret
