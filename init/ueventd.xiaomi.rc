@@ -64,6 +64,9 @@ external_firmware_handler /devices/platform/soc/soc:gh-secure-vm-loader@1/firmwa
 external_firmware_handler /devices/platform/soc/soc:gh-secure-vm-loader@1/firmware/oemvm.b04 system "/vendor/bin/vmmgr -r"
 external_firmware_handler /devices/platform/soc/soc:gh-secure-vm-loader@1/firmware/oemvm.b05 system "/vendor/bin/vmmgr -r"
 
+# Lineage Charger
+/sys/class/qcom-battery   input_suspend  0660  system  system
+
 # Xiaomi Display Feature
 subsystem mi_display
     devname uevent_devpath
