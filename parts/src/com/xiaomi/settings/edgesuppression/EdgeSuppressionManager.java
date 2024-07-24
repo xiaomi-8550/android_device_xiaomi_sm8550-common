@@ -8,9 +8,12 @@ package com.xiaomi.settings.edgesuppression;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
+
+import com.android.internal.util.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,6 +37,7 @@ public class EdgeSuppressionManager {
     private int mScreenWidth;
     private int[] mAbsoluteLevel;
     private int[] mCorner;
+    private String[] mSupportedDevices = {"ishtar", "nuwa"};
 
     private enum Mode {
         CORNER(0),
@@ -71,7 +75,7 @@ public class EdgeSuppressionManager {
 
     public ArrayList<Integer> handleEdgeSuppressionChange() {
         int rotation = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-        float width = PreferenceManager.getDefaultSharedPreferences(mContext).getFloat("edgesuppression_width_value", 0.8f);
+        float width = PreferenceManager.getDefaultSharedPreferences(mContext).getFloat("edgesuppression_width_value", getDefaultWidthValue());
         ArrayList<Integer> suppressionRect = getSuppressionRect(rotation, width);
         TfWrapper.setTouchFeature(new TfWrapper.TfParams(15, suppressionRect));
         return suppressionRect;
@@ -139,6 +143,14 @@ public class EdgeSuppressionManager {
 
     public int getSuppressionSize(boolean absolute, float width) {
         return (int) (width * (absolute ? 10 : 50));
+    }
+
+    public boolean getDefaultState() {
+        return ArrayUtils.contains(mSupportedDevices, Build.SKU);
+    }
+
+    public float getDefaultWidthValue() {
+        return ArrayUtils.contains(mSupportedDevices, Build.SKU) ? 0.8f : 0f;
     }
 
     private void initRectList() {
