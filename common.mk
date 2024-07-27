@@ -319,6 +319,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.xiaomi-multihal \
     libsensorndkbridge \
+    sensor-notifier \
     sensors.xiaomi
 
 PRODUCT_COPY_FILES += \
@@ -343,9 +344,6 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti-v2
 
 # Touchscreen
-PRODUCT_PACKAGES += \
-    nonui-notifier
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
