@@ -1351,12 +1351,6 @@ vendor/lib64/android.hardware.secure_element@1.0-impl.so
 vendor/lib64/libesepmconfig.so
 vendor/lib64/libesesbprovision.so
 
-# Sensor Communicate
-odm/bin/hw/vendor.xiaomi.sensor.communicate@1.0-service
-odm/etc/init/vendor.xiaomi.sensor.communicate@1.0-service.rc
-odm/etc/vintf/manifest/vendor.xiaomi.sensor.communicate@1.0_manifest.xml
-vendor/lib64/vendor.xiaomi.sensor.communicate@1.0.so
-
 # Sensors
 odm/lib64/libclient2slpi.notifier.so
 odm/lib64/libsensor_cal@2.0.so
