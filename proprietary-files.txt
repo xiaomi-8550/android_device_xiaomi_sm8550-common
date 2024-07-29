@@ -1360,7 +1360,6 @@ vendor/lib64/vendor.xiaomi.sensor.communicate@1.0.so
 # Sensors
 odm/lib64/libclient2slpi.notifier.so
 odm/lib64/libsensor_cal@2.0.so
-odm/lib64/libssccalapi@2.0.so
 odm/lib64/sensors.touch.detect.so
 vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service
 vendor/bin/init.qcom.sensors.sh
