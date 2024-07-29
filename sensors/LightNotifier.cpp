@@ -123,7 +123,7 @@ void LightNotifier::pollingFunction() {
             msg->unknown1 = 1;
             msg->unknown2 = 5;
 
-            LOG(DEBUG) << "sending oem_msg for sensor " << msg->sensor_type
+            LOG(ERROR) << "sending oem_msg for sensor " << msg->sensor_type
                       << " with type: " << msg->notify_type << " and value: " << msg->value;
             mProcessMsg(msg);
         }
