@@ -60,7 +60,6 @@ public class EdgeSuppressionManager {
         mScreenWidth = Math.min(metrics.widthPixels, metrics.heightPixels) - 1;
         mScreenHeight = Math.max(metrics.widthPixels, metrics.heightPixels) - 1;
 
-        mAbsoluteLevel = mContext.getResources().getIntArray(R.array.edge_suppresson_absolute);
         mCorner = mContext.getResources().getIntArray(R.array.edge_suppresson_corner);
         mRectList = new ArrayList<>(mContext.getResources().getInteger(R.integer.edge_suppresson_rect_size));
         mSendList = new ArrayList<>(mContext.getResources().getInteger(R.integer.edge_suppresson_send_size));

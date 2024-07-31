@@ -6,13 +6,6 @@
 -->
 <resources>
     <!-- Edge Suppression -->
-    <array name="edge_suppresson_absolute" translatable="false">
-        <item>0</item>
-        <item>3</item>
-        <item>5</item>
-        <item>8</item>
-        <item>10</item>
-    </array>
     <array name="edge_suppresson_corner" translatable="false">
         <item>150</item>
         <item>300</item>
