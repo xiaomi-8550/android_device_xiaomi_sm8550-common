@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Pocket Lock -->
-    <bool name="config_pocketModeSupported">false</bool>
+    <string name="config_pocketJudgeVendorSensorName">xiaomi.sensor.nonui</string>
+    <item name="config_pocketJudgeVendorSensorValue" format="float" type="dimen">2.0</item>
 
     <!-- Defines the sysfs attribute path used by the device
          to enable/disable DC dimming. -->
