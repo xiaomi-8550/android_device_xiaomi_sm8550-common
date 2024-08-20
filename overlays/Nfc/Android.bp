@@ -8,3 +8,9 @@ runtime_resource_overlay {
     name: "Xiaomi8550Nfc",
     device_specific: true,
 }
+
+runtime_resource_overlay {
+    name: "Xiaomi8550NfcST",
+    manifest: "AndroidManifestST.xml",
+    device_specific: true,
+}

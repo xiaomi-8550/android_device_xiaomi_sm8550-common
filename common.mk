@@ -292,6 +292,7 @@ PRODUCT_PACKAGES += \
     Xiaomi8550Frameworks \
     Xiaomi8550FrameworksAOSPA \
     Xiaomi8550Nfc \
+    Xiaomi8550NfcST \
     Xiaomi8550SecureElement \
     Xiaomi8550Settings \
     Xiaomi8550SystemUI \
