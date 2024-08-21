@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <bool name="nfcc_always_on_allowed">false</bool>
     <string-array name="config_skuSupportsSecureNfc">
         <item>fuxi</item>
         <item>nuwa</item>
