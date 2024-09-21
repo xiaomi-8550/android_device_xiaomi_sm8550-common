@@ -6,6 +6,7 @@
 - Xiaomi 13 Pro (nuwa)
 - Xiaomi 13 Ultra (ishtar)
 - POCO F6 Pro / Redmi K70 (vermeer)
+- Xiaomi Pad 6S Pro 12.4 (sheng)
 
 ## Currently supported SoCs
 

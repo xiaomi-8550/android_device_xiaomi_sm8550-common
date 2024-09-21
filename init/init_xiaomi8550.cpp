@@ -95,6 +95,14 @@ void vendor_load_properties() {
             set_ro_build_prop("model", "23113RKC6G");
             set_ro_build_prop("name", "vermeer_global");
         }
+    } else if (sku == "sheng") { // Xiaomi Pad 6S Pro 12.4
+        if (region == "CN") { // China
+            set_ro_build_prop("model", "24018RPACC");
+            set_ro_build_prop("name", "sheng");
+        } else {              // Global
+            set_ro_build_prop("model", "24018RPACG");
+            set_ro_build_prop("name", "sheng_global");
+        }
     }
 
     // Override hardware revision
