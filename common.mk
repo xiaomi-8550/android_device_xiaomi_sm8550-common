@@ -23,7 +23,11 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
+else
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+endif
 
 # A/B
 ENABLE_AB := true
@@ -57,6 +61,22 @@ TARGET_BOARD_PLATFORM := kalama
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # QTI components
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+TARGET_COMMON_QTI_COMPONENTS := \
+    adreno \
+    alarm \
+    audio \
+    av \
+    bt \
+    charging \
+    display \
+    init \
+    overlay \
+    perf \
+    usb \
+    wfd \
+    wlan
+else
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
     alarm \
@@ -72,13 +92,19 @@ TARGET_COMMON_QTI_COMPONENTS := \
     usb \
     wfd \
     wlan
+endif
 
 TARGET_USE_AIDL_QTI_BT_AUDIO := true
 TARGET_USE_AIDL_QTI_HEALTH := true
 
 # Shipping API level
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+BOARD_SHIPPING_API_LEVEL := 34
+PRODUCT_SHIPPING_API_LEVEL := 34
+else
 BOARD_SHIPPING_API_LEVEL := 33
 PRODUCT_SHIPPING_API_LEVEL := 33
+endif
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -131,14 +157,20 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
 # Characteristics
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+PRODUCT_CHARACTERISTICS := tablet,nosdcard
+else
 PRODUCT_CHARACTERISTICS := nosdcard
+endif
 
 # Consumer IR
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 PRODUCT_PACKAGES += \
     android.hardware.ir-service.example
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
+endif
 
 # Display
 TARGET_PANEL_DIMENSION_HAS_EXTRA_PRECISION := true
@@ -175,9 +207,14 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Fingerprint
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service
+else
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.xiaomi \
     libudfpshandler
+endif
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -202,6 +239,14 @@ PRODUCT_PACKAGES += \
     android.hardware.identity-V4-ndk.vendor
 
 # Init
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.target.rc \
+    init.mi_perf.rc \
+    init.mi_service.rc \
+    ueventd.xiaomi.rc
+else
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.target.rc \
@@ -209,6 +254,7 @@ PRODUCT_PACKAGES += \
     init.mi_service.rc \
     init.mi_udfps.rc \
     ueventd.xiaomi.rc
+endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
@@ -285,6 +331,7 @@ PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks-V1-ndk.vendor
 
 # NFC
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 $(call inherit-product, vendor/nxp/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
 $(call inherit-product, vendor/st/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
 
@@ -298,8 +345,21 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.se.omapi.uicc.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml
+endif
 
 # Overlays
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+PRODUCT_PACKAGES += \
+    Xiaomi8550DeviceAsWebcamRes \
+    Xiaomi8550Frameworks \
+    Xiaomi8550FrameworksAOSPA \
+    Xiaomi8550SecureElement \
+    Xiaomi8550Settings \
+    Xiaomi8550SystemUI \
+    Xiaomi8550SystemUIAOSPA \
+    Xiaomi8550WifiRes \
+    Xiaomi8550WifiResMainline
+else
 PRODUCT_PACKAGES += \
     Xiaomi8550CarrierConfigRes \
     Xiaomi8550CarrierConfigResMiui \
@@ -313,7 +373,8 @@ PRODUCT_PACKAGES += \
     Xiaomi8550SystemUI \
     Xiaomi8550SystemUIAOSPA \
     Xiaomi8550WifiRes \
-    Xiaomi8550WifiResMainline \
+    Xiaomi8550WifiResMainline
+endif
 
 # Parts
 PRODUCT_PACKAGES += \
@@ -324,8 +385,10 @@ PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
 # Powershare
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 PRODUCT_PACKAGES += \
     vendor.aospa.powershare-service
+endif
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -352,6 +415,14 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.relative_humidity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.relative_humidity.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
+
+# Tablet
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
+endif
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -382,11 +453,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml
 
 # Vibrator
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.vibrator.service.xiaomi
 
 PRODUCT_COPY_FILES += \
     hardware/xiaomi/aidl/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+endif
 
 # VNDK
 PRODUCT_COPY_FILES += \

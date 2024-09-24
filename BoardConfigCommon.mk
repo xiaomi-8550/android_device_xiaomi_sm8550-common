@@ -57,12 +57,21 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 # HIDL
+ifeq ($(filter sheng,$(TARGET_DEVICE)),)
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(COMMON_PATH)/configs/vintf/framework_matrix_xiaomi_sheng.xml
+
+DEVICE_MANIFEST_FILE += \
+    $(COMMON_PATH)/configs/vintf/manifest_kalama_sheng.xml \
+    $(COMMON_PATH)/configs/vintf/manifest_xiaomi_sheng.xml
+else
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(COMMON_PATH)/configs/vintf/framework_matrix_xiaomi.xml
 
 DEVICE_MANIFEST_FILE += \
     $(COMMON_PATH)/configs/vintf/manifest_kalama.xml \
     $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml
+endif
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_xiaomi_sm8550
@@ -127,7 +136,9 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 TARGET_POWERHAL_MODE_EXT := $(COMMON_PATH)/power/power-mode.cpp
 
 # PowerShare
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 TARGET_POWERSHARE_NODE := /sys/class/qcom-battery/reverse_chg_mode
+endif
 
 # Properties
 TARGET_ODM_PROP += $(COMMON_PATH)/configs/properties/odm.prop
@@ -153,8 +164,10 @@ SOONG_CONFIG_SENSORS_XIAOMI += USES_SINGLE_TAP_SENSOR
 SOONG_CONFIG_SENSORS_XIAOMI_USES_SINGLE_TAP_SENSOR := true
 SOONG_CONFIG_SENSORS_XIAOMI += USES_DOUBLE_TAP_SENSOR
 SOONG_CONFIG_SENSORS_XIAOMI_USES_DOUBLE_TAP_SENSOR := true
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 SOONG_CONFIG_SENSORS_XIAOMI += USES_UDFPS_SENSOR
 SOONG_CONFIG_SENSORS_XIAOMI_USES_UDFPS_SENSOR := true
+endif
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -193,6 +206,8 @@ BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # Vibrator
+ifneq ($(filter sheng,$(TARGET_DEVICE)),)
 SOONG_CONFIG_NAMESPACES += XIAOMI_VIBRATOR
 SOONG_CONFIG_XIAOMI_VIBRATOR := USE_EFFECT_STREAM
 SOONG_CONFIG_XIAOMI_VIBRATOR_USE_EFFECT_STREAM := true
+endif
