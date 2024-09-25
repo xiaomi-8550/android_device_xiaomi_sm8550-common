@@ -4,10 +4,6 @@
     <string name="config_pocketJudgeVendorSensorName">xiaomi.sensor.nonui</string>
     <item name="config_pocketJudgeVendorSensorValue" format="float" type="dimen">2.0</item>
 
-    <!-- Defines the sysfs attribute path used by the device
-         to enable/disable DC dimming. -->
-    <string name="config_deviceDcDimmingSysfsNode">/dev/null</string>
-
     <!-- Fingerprint from stock ROM -->
     <string name="config_stockFingerprint" translatable="false">Xiaomi/fuxi_global/missi:13/TKQ1.220905.001/V14.0.9.0.TMCMIXM:user/release-keys</string>
 </resources>

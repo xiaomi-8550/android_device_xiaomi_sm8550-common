@@ -60,11 +60,6 @@
         </service>
 
         <service
-            android:name=".display.DcDimmingService"
-            android:exported="true">
-        </service>
-
-        <service
             android:name=".edgesuppression.EdgeSuppressionService"
             android:exported="true">
         </service>
