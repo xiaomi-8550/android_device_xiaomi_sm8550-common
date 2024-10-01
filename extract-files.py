@@ -229,6 +229,8 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('pipe2: 1'),
     'vendor/lib64/c2.dolby.client.so': blob_fixup()
         .add_needed('libcodec2_hidl_shim.so'),
+    'vendor/lib64/libqcodec2_core.so': blob_fixup()
+        .add_needed('libcodec2_shim.so'),
     'vendor/lib64/libqms_xiaomi.so': blob_fixup()
         .add_needed('libbinder_shim.so'),
     'vendor/lib64/libsnpe_config.so': blob_fixup()
