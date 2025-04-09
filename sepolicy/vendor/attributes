@@ -1,3 +1,8 @@
+# Miface
+attribute hal_miface;
+attribute hal_miface_client;
+attribute hal_miface_server;
+
 # SLA
 attribute hal_slaservice;
 attribute hal_slaservice_client;

@@ -51,6 +51,7 @@ function lib_to_package_fixup_odm_variants() {
         vendor.xiaomi.hardware.fingerprintextension)
             echo "$1_vendor"
             ;;
+        libmiface) ;;
         *)
             return 1
             ;;

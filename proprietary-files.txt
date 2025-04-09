@@ -238,7 +238,6 @@ vendor/lib64/libsnpe_config.so
 vendor/lib64/libsynx.so
 vendor/lib64/libthreadutils.so
 vendor/lib64/vendor.xiaomi.hardware.bgservice@1.0.so
-vendor/lib64/vendor.xiaomi.hardware.miface@1.0.so
 vendor/lib64/vendor.xiaomi.hardware.quickcamera@1.0.so
 
 # Camera (Firmware)
@@ -579,6 +578,15 @@ vendor/lib64/libesepmconfig.so
 vendor/lib64/libesesbprovision.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.1.so
+
+# Face
+odm/bin/hw/android.hardware.biometrics.face-aidl-service
+odm/bin/mifaced@1.0;DISABLE_CHECKELF
+odm/etc/init/android.hardware.biometrics.face-aidl-service.rc
+odm/etc/init/vendor.xiaomi.hardware.miface@1.0-service.rc
+odm/etc/vintf/manifest/face-default.xml
+vendor/etc/vintf/manifest/manifest_vendor.xiaomi.hardware.miface.xml
+vendor/lib64/vendor.xiaomi.hardware.miface@1.0.so
 
 # Fingerprint
 odm/lib64/vendor.xiaomi.hardware.fx.tunnel@1.0.so;MODULE_SUFFIX=_odm

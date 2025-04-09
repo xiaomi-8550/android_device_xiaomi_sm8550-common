@@ -1,0 +1,35 @@
+type hal_miface_default, domain;
+type hal_miface_default_exec, exec_type, file_type, vendor_file_type;
+type hal_miface_hwservice, hwservice_manager_type;
+
+allow hal_miface_client hal_miface_server:binder { call transfer };
+allow hal_miface_client hal_miface_server:binder transfer;
+allow hal_miface_client hal_miface_server:fd *;
+allow hal_miface_server hal_miface_client:binder transfer;
+allow hal_miface_server hal_miface_client:binder { call transfer };
+allow hal_miface_server hal_miface_client:fd *;
+allow hal_miface_default hal_miface_hwservice:hwservice_manager add;
+allow hal_miface_default tee_device:chr_file rw_file_perms;
+allow hal_miface_default ion_device:chr_file rw_file_perms;
+allow hal_miface_default hal_graphics_allocator_default:fd *;
+allow hal_miface_default fwk_camera_hwservice:hwservice_manager find;
+allow hal_miface_default cameraserver:binder call;
+allow hal_miface_default cameraserver:binder transfer;
+allow hal_miface_default hal_face_default:binder call;
+allow hal_miface_default hal_face_default:binder transfer;
+allow hal_miface_default hidl_token_hwservice:hwservice_manager find;
+allow hal_miface_default hal_graphics_mapper_hwservice:hwservice_manager find;
+allow hal_miface_default system_server:binder transfer;
+allow hal_miface_default system_server:binder { call transfer };
+allow hal_miface_default system_server:fd *;
+allow hal_miface_default sysfs_tp_fodstatus:chr_file r_file_perms;
+allow hal_miface_default sysfs_tp_fodstatus:file r_file_perms;
+allow hal_miface_default system_app:binder call;
+allow hal_miface_default vendor_dmabuf_qseecom_heap_device:chr_file { ioctl open read };
+allow hal_miface_default vendor_dmabuf_qseecom_ta_heap_device:chr_file { ioctl open read };
+init_daemon_domain(hal_miface_default)
+get_prop(hal_miface_default, camera_config_prop)
+hwbinder_use(hal_miface_default)
+hal_server_domain(hal_miface_default, hal_miface)
+hal_client_domain(hal_miface_default, hal_graphics_allocator)
+add_hwservice(hal_miface_server, hal_miface_hwservice)

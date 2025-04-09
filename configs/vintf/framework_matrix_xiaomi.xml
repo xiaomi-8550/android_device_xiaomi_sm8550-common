@@ -2060,6 +2060,14 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.xiaomi.hardware.miface</name>
+        <version>1.0</version>
+        <interface>
+            <name>IMiFace</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.mimd</name>
         <version>1.0</version>
         <interface>

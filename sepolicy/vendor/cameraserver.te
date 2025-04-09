@@ -1,0 +1,1 @@
+allow cameraserver hal_miface_default:binder { call transfer };

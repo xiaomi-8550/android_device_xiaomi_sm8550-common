@@ -1,6 +1,9 @@
 # EID
 vendor.rongcard.hardware.eid::IEidDevice                                    u:object_r:vendor_hal_eid_hwservice:s0
 
+# Face
+vendor.xiaomi.hardware.miface::IMiFace                                      u:object_r:hal_miface_hwservice:s0
+
 # Fingerprint
 vendor.xiaomi.hardware.dtool::IDtool                                        u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
 vendor.xiaomi.hardware.fx.tunnel::IMiFxTunnel                               u:object_r:vendor_hal_fingerprint_hwservice_xiaomi:s0
