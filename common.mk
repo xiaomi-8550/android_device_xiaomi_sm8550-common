@@ -323,6 +323,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     hardware/xiaomi/aidl/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
+$(call soong_config_set, XIAOMI_VIBRATOR, USE_EFFECT_STREAM, true)
+
 # VNDK
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-core/libcrypto.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libcrypto-v33.so \
