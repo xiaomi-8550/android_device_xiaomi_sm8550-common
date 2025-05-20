@@ -181,6 +181,9 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.xiaomi.hardware.fingerprintextension@1.0',
     ): lib_fixup_vendor_suffix,
     (
+        'libagmclient',
+        'libagmmixer',
+        'libpalclient',
         'libcamxcommonutils',
         'libwpa_client',
     ): lib_fixup_remove,
