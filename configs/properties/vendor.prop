@@ -2,6 +2,8 @@
 persist.vendor.audio.misoundasc=true
 persist.vendor.audio.misound.disable=true
 ro.audio.monitorRotation=true
+ro.audio.spatializer_enabled=true
+ro.vendor.audio.feature.spatial=7
 ro.vendor.audio.misound.bluetooth.enable=false
 
 # Bluetooth
