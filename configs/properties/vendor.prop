@@ -1,5 +1,8 @@
 # Audio
+persist.vendor.audio.misoundasc=true
+persist.vendor.audio.misound.disable=true
 ro.audio.monitorRotation=true
+ro.vendor.audio.misound.bluetooth.enable=false
 
 # Bluetooth
 persist.sys.fflag.override.settings_bluetooth_hearing_aid=true

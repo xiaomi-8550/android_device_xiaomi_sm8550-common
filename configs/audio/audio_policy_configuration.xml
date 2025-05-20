@@ -107,13 +107,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </mixPort>
                 <mixPort name="deep_buffer" role="source"
                         flags="AUDIO_OUTPUT_FLAG_DEEP_BUFFER">
-                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-                    <profile name="" format="AUDIO_FORMAT_PCM_8_24_BIT"
-                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                     <profile name="" format="AUDIO_FORMAT_PCM_24_BIT_PACKED"
-                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-                    <profile name="" format="AUDIO_FORMAT_PCM_32_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
                 <mixPort name="mmap_no_irq_out" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT AUDIO_OUTPUT_FLAG_MMAP_NOIRQ">
@@ -211,9 +205,18 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                              samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO AUDIO_CHANNEL_IN_FRONT_BACK"/>
                 </mixPort>
+                <mixPort name="voip record" role="sink" maxOpenCount="1" maxActiveCount="1"
+                         flags="AUDIO_INPUT_FLAG_VOIP_RECORD">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
+                             channelMasks="AUDIO_CHANNEL_IN_STEREO AUDIO_CHANNEL_IN_FRONT_BACK"/>
+                </mixPort>
                 <mixPort name="compress-input" role="sink"
                          flags="AUDIO_INPUT_FLAG_DIRECT" >
                     <profile name="compress-capture-AAC-LC" format="AUDIO_FORMAT_AAC_LC"
+                             samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
+                             channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO AUDIO_CHANNEL_IN_FRONT_BACK"/>
+                    <profile name="compress-capture-AAC-ADTS-LC" format="AUDIO_FORMAT_AAC_ADTS_LC"
                              samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO AUDIO_CHANNEL_IN_FRONT_BACK"/>
                 </mixPort>
@@ -372,6 +375,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     <profile name="compress-capture-AAC-LC" format="AUDIO_FORMAT_AAC_LC"
                              samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
                              channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO AUDIO_CHANNEL_IN_FRONT_BACK"/>
+                    <profile name="compress-capture-AAC-ADTS-LC" format="AUDIO_FORMAT_AAC_ADTS_LC"
+                             samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
+                             channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO AUDIO_CHANNEL_IN_FRONT_BACK"/>
                 </devicePort>
                 <devicePort tagName="Built-In Back Mic" type="AUDIO_DEVICE_IN_BACK_MIC" role="source">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
@@ -451,6 +457,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                        sources="Telephony Rx"/>
                 <route type="mix" sink="primary input"
                        sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,BT SCO Headset Mic,FM Tuner,Telephony Rx,A2DP In,Echo Reference,BLE In"/>
+                <route type="mix" sink="voip record"
+                       sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,BT SCO Headset Mic,FM Tuner,USB Device In,USB Headset In,Telephony Rx"/>
                 <route type="mix" sink="compress-input"
                        sources="Built-In Mic,Built-In Back Mic,BT SCO Headset Mic,Wired Headset Mic,USB Device In,USB Headset In,BLE In"/>
                 <route type="mix" sink="usb_surround_sound"
@@ -480,27 +488,48 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
         </module>
 
+
         <!-- A2DP Audio HAL -->
-        <!-- <module name="a2dp" halVersion="2.0">
+        <module name="bluetooth_qti" halVersion="2.0">
             <mixPorts>
+                <mixPort name="a2dp output" role="source"/>
                 <mixPort name="a2dp input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="44100 48000" channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/>
                 </mixPort>
             </mixPorts>
-
             <devicePorts>
+                <devicePort tagName="BT A2DP Out" type="AUDIO_DEVICE_OUT_BLUETOOTH_A2DP" role="sink" encodedFormats="AUDIO_FORMAT_FORCE_AOSP">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                            samplingRates="44100,48000,96000"
+                            channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
+                <devicePort tagName="BT A2DP Headphones" type="AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_HEADPHONES" role="sink"  encodedFormats="AUDIO_FORMAT_FORCE_AOSP">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                            samplingRates="44100,48000,96000"
+                            channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
+                <devicePort tagName="BT A2DP Speaker" type="AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER" role="sink" encodedFormats="AUDIO_FORMAT_FORCE_AOSP">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                            samplingRates="44100,48000,96000"
+                            channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
                 <devicePort tagName="BT A2DP In" type="AUDIO_DEVICE_IN_BLUETOOTH_A2DP" role="source">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="44100 48000" channelMasks="AUDIO_CHANNEL_IN_MONO AUDIO_CHANNEL_IN_STEREO"/>
                 </devicePort>
             </devicePorts>
-
             <routes>
+                <route type="mix" sink="BT A2DP Out"
+                        sources="a2dp output"/>
+                <route type="mix" sink="BT A2DP Headphones"
+                        sources="a2dp output"/>
+                <route type="mix" sink="BT A2DP Speaker"
+                        sources="a2dp output"/>
                 <route type="mix" sink="a2dp input"
                        sources="BT A2DP In"/>
             </routes>
-        </module> -->
+        </module>
 
         <!-- Usb Audio HAL -->
         <module name="usb" halVersion="2.0">
