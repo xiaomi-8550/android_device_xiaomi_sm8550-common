@@ -49,7 +49,6 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.xiaomi.hardware.tidaservice@1.2',
     ): lib_fixup_odm_suffix,
     (
-        'audio.primary.kalama',
         'libsdm-color',
         'libsdm-disp-vndapis',
         'libsdmextension',
@@ -181,6 +180,7 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.xiaomi.hardware.fingerprintextension@1.0',
     ): lib_fixup_vendor_suffix,
     (
+        'audio.primary.kalama',
         'libagmclient',
         'libagmmixer',
         'libpalclient',
