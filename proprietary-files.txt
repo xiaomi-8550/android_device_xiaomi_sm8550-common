@@ -852,6 +852,13 @@ vendor/lib64/vendor.qti.hardware.factory@1.1.so
 # Modem Manager
 vendor/bin/modemManager
 vendor/etc/init/modemManager.rc
+vendor/etc/modem/Diag.cfg
+vendor/etc/modem/Diag_data.cfg
+vendor/etc/modem/Diag_default.cfg
+vendor/etc/modem/Diag_global.cfg
+vendor/etc/modem/Diag_ims.cfg
+vendor/etc/modem/network_scan_config.cfg
+vendor/etc/modem/power.cfg
 vendor/etc/seccomp_policy/modemManager.policy
 
 # Native Public Libraries
