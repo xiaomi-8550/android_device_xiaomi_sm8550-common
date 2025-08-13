@@ -16,3 +16,6 @@ import /odm/etc/build_${ro.boot.hardware.sku}.prop
 
 # SPU
 vendor.gatekeeper.disable_spu=true
+
+# Telephony
+persist.vendor.radio.dynamic_sar=1
