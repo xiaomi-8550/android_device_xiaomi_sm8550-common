@@ -245,7 +245,6 @@ PRODUCT_PACKAGES += \
 # Overlays
 PRODUCT_PACKAGES += \
     Xiaomi8550CarrierConfigRes \
-    Xiaomi8550CarrierConfigResMiui \
     Xiaomi8550DeviceAsWebcamRes \
     Xiaomi8550EuiccGoogle \
     Xiaomi8550Frameworks \
