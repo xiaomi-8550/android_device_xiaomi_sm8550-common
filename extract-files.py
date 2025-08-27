@@ -200,6 +200,11 @@ blob_fixups: blob_fixups_user_type = {
             'libcrypto.so',
             'libcrypto-v33.so',
         ),
+    'odm/lib64/nfc_nci.nqx.default.hw.so': blob_fixup()
+        .replace_needed(
+            'libbase.so',
+            'libbase-v33.so'
+        ),
     'system_ext/framework/mirilhook.jar': blob_fixup()
         .apktool_patch('blob-patches/mirilhook.patch', '-r'),
     'vendor/bin/modemManager' : blob_fixup()
