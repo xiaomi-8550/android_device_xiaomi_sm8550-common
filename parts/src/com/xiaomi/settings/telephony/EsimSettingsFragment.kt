@@ -46,7 +46,7 @@ class EsimSettingsFragment : PreferenceFragmentCompat(),
         }
     }
 
-    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+    override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
         if (DEBUG) Log.d(TAG, "onCheckedChanged: $isChecked")
         if (esimController.getEsimActive()) {
             if (isChecked) return
