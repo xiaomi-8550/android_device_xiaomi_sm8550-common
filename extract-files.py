@@ -188,6 +188,13 @@ lib_fixups: lib_fixups_user_type = {
 
 blob_fixups: blob_fixups_user_type = {
     (
+        'odm/lib64/libaudioroute_ext.so',
+    ): blob_fixup()
+        .replace_needed(
+            'libaudioroute.so',
+            'libaudioroute-v34.so',
+        ),
+    (
         'odm/lib64/hw/displayfeature.default.so',
         'vendor/lib64/hw/audio.primary.kalama.so',
     ): blob_fixup()
