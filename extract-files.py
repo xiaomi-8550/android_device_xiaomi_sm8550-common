@@ -189,6 +189,7 @@ lib_fixups: lib_fixups_user_type = {
 blob_fixups: blob_fixups_user_type = {
     (
         'odm/lib64/libaudioroute_ext.so',
+        'vendor/lib64/libar-pal.so',
     ): blob_fixup()
         .replace_needed(
             'libaudioroute.so',
