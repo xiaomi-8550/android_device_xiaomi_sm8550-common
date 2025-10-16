@@ -1005,7 +1005,6 @@ vendor/lib64/libqmiservices.so
 vendor/lib64/libsubsystem_control.so
 
 # QTI
-vendor/bin/init.qti.write.sh
 vendor/bin/qtigetprop
 vendor/bin/qtisetprop
 vendor/lib64/libsoc_helper.so
