@@ -187,6 +187,12 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
+    'odm/etc/init/android.hardware.nfc@1.2-service-st.rc': blob_fixup()
+        .regex_replace(
+            'on boot && property:ro.build.version.sdk=35 && property:ro.product.device=ishtar',
+            'on boot && property:ro.hardware.nfc=ST_NFC',
+        )
+        .regex_replace('.+setprop ro.hardware.nfc ST_NFC+\n', ''),
     (
         'odm/lib64/libaudioroute_ext.so',
         'vendor/lib64/libar-pal.so',

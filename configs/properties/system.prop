@@ -3,9 +3,6 @@ media.aac_51_output_enabled=true
 media.settings.xml=/vendor/etc/media_profiles_kalama.xml
 ro.media.recorder-max-base-layer-fps=60
 
-# NFC
-ro.nfc.port=I2C
-
 # RKPD
 remote_provisioning.enable_rkpd=true
 remote_provisioning.hostname=remoteprovisioning.googleapis.com

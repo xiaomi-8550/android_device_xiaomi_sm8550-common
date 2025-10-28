@@ -885,7 +885,7 @@ odm/bin/hw/android.hardware.nfc@1.2-service-st
 odm/bin/hw/vendor.nxp.hardware.nfc@2.0-service
 odm/etc/init/android.hardware.nfc@1.2-service-st.rc
 odm/etc/init/vendor.nxp.hardware.nfc@2.0-service.rc
-odm/etc/libnfc-nci.conf
+odm/etc/libnfc-nci.conf:odm/etc/libnfc-nci-STM.conf
 odm/etc/libnfc-nxp.conf
 odm/etc/libnfc-nxp_RF.conf
 odm/lib64/libstnfc-auth.so
@@ -924,8 +924,10 @@ vendor/etc/sn100u_pnx_pcv.pnscr
 vendor/etc/sn100u_pnx_sst.pnscr
 vendor/etc/st54j_conf.txt
 vendor/etc/st54k_conf_38.4MHz.txt
-vendor/lib64/libsn100u_fw.so
-vendor/lib64/libsn220u_fw.so
+vendor/firmware/st54j_fw.bin
+vendor/firmware/st54k_conf_38.4MHz.bin
+vendor/lib64/libsn100u_fw.so;FIX_SONAME
+vendor/lib64/libsn220u_fw.so;FIX_SONAME
 vendor/lib64/libvui_dmgr_client.so
 vendor/lib64/se_nq_extn_client.so
 

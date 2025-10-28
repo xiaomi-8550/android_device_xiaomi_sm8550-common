@@ -223,8 +223,21 @@ PRODUCT_PACKAGES += \
     IFAAService
 
 # NFC
+ifneq ($(filter ishtar vermeer,$(TARGET_DEVICE)),)
+$(call inherit-product, vendor/st/opensource/commonsys/frameworks/st21nfc/NfcDeviceConfig.mk)
+$(call inherit-product, vendor/st/opensource/commonsys/packages/modules/Nfc/NfcDeviceConfig.mk)
+
+PRODUCT_PACKAGES += \
+    NfcNci \
+
+PRODUCT_ODM_PROPERTIES += \
+    ro.hardware.nfc=ST_NFC
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.nfc.port=I2C
+else
 $(call inherit-product, vendor/nxp/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
-$(call inherit-product, vendor/st/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
+endif
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.nfc.ese.xml \
@@ -251,7 +264,6 @@ PRODUCT_PACKAGES += \
     Xiaomi8550FrameworksAOSPA \
     Xiaomi8550FrameworksEuicc \
     Xiaomi8550Nfc \
-    Xiaomi8550NfcST \
     Xiaomi8550SecureElement \
     Xiaomi8550Settings \
     Xiaomi8550SystemUI \
