@@ -1,5 +1,6 @@
 /*
  * SPDX-FileCopyrightText: 2025 Paranoid Android
+ * SPDX-FileCopyrightText: 2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,7 +10,6 @@ import android.app.ActivityThread
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.SystemProperties
-import android.telephony.SubscriptionInfo
 import android.telephony.SubscriptionManager
 import android.text.TextUtils
 import android.util.Log
@@ -29,40 +29,47 @@ class EsimController private constructor(private val context: Context) {
         private const val PROPERTY_DEVICE_NAME = "ro.product.device"
 
         private const val MIRILHOOK_CLASS_NAME = "com.xiaomi.mirilhook.MiRilHook"
-        private const val MIRILHOOK_JAR_PATH = "/system_ext/framework/mirilhook.jar"
-        private const val QCRILHOOKCALLBACK_CLASS_NAME = "com.qualcomm.qcrilhook.QcRilHookCallback"
+        private const val MIRILHOOK_JAR_PATH = "/system_ext/framework/xiaomi-modem-common.jar"
+        private const val MIRILHOOKCALLBACK_CLASS_NAME = "com.xiaomi.mirilhook.MiRilHookCallback"
         private const val QCRILHOOK_JAR_PATH = "/system_ext/framework/qcrilhook.jar"
+        private const val QCRILHOOKCALLBACK_CLASS_NAME = "com.qualcomm.qcrilhook.QcRilHookCallback"
 
-        @Volatile
-        private var instance: EsimController? = null
+        @Volatile private var instance: EsimController? = null
 
         fun getInstance(context: Context): EsimController {
-            return instance ?: synchronized(this) {
-                instance ?: EsimController(context.applicationContext).also { instance = it }
-            }
+            return instance
+                ?: synchronized(this) {
+                    instance ?: EsimController(context.applicationContext).also { instance = it }
+                }
         }
     }
 
-    private var miRilJarLoader: DexClassLoader? = null
+    private var miRilHookCallbackClass: Class<*>? = null
+    private var miRilHookCallbackObj: Any? = null
     private var miRilHookClass: Class<*>? = null
     private var miRilHookObj: Any? = null
-    private var qcRilJarLoader: DexClassLoader? = null
+    private var miRilJarLoader: DexClassLoader? = null
     private var qcRilHookCallbackClass: Class<*>? = null
     private var qcRilHookCallbackObj: Any? = null
+    private var qcRilJarLoader: DexClassLoader? = null
 
     fun onBootCompleted() {
         if (DEBUG) Log.d(TAG, "onBootCompleted")
         setupHook()
-        updateEuicc()
     }
 
     fun getEsimActive(): Boolean {
-        val subscriptionManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as? SubscriptionManager
+        val subscriptionManager =
+            context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as? SubscriptionManager
         val subscriptionInfoList = subscriptionManager?.activeSubscriptionInfoList ?: return false
 
         for (subscriptionInfo in subscriptionInfoList) {
             if (subscriptionInfo.isEmbedded) {
-                if (DEBUG) Log.d(TAG, "Found eSIM profile: ${subscriptionInfo.displayName}, ${subscriptionInfo.carrierName}")
+                if (DEBUG)
+                    Log.d(
+                        TAG,
+                        "Found eSIM profile: ${subscriptionInfo.displayName}, ${subscriptionInfo.carrierName}",
+                    )
                 return true
             }
         }
@@ -95,70 +102,78 @@ class EsimController private constructor(private val context: Context) {
             return
         }
 
-        miRilJarLoader = miRilJarLoader ?: runCatching {
-            DexClassLoader(
-                MIRILHOOK_JAR_PATH,
-                context.getDir("jar", 0).absolutePath,
-                null,
-                context.classLoader
-            )
-        }.onFailure { e ->
-            if (DEBUG) Log.d(TAG, "Failed to initialize miRilJarLoader: $e")
-        }.getOrNull()
+        miRilJarLoader =
+            miRilJarLoader
+                ?: runCatching {
+                        DexClassLoader(
+                            MIRILHOOK_JAR_PATH,
+                            context.getDir("jar", 0).absolutePath,
+                            null,
+                            context.classLoader,
+                        )
+                    }
+                    .onFailure { e ->
+                        if (DEBUG) Log.d(TAG, "Failed to initialize miRilJarLoader: $e")
+                    }
+                    .getOrNull()
 
-        miRilHookClass = miRilHookClass ?: runCatching {
-            miRilJarLoader?.loadClass(MIRILHOOK_CLASS_NAME)
-        }.onFailure { e ->
-            if (DEBUG) Log.d(TAG, "Failed to load miRilHookClass: $e")
-        }.getOrNull()
+        miRilHookClass =
+            miRilHookClass
+                ?: runCatching { miRilJarLoader?.loadClass(MIRILHOOK_CLASS_NAME) }
+                    .onFailure { e -> if (DEBUG) Log.d(TAG, "Failed to load miRilHookClass: $e") }
+                    .getOrNull()
 
-        qcRilJarLoader = qcRilJarLoader ?: runCatching {
-            DexClassLoader(
-                QCRILHOOK_JAR_PATH,
-                context.getDir("jar", 0).absolutePath,
-                null,
-                context.classLoader
-            )
-        }.onFailure { e ->
-            if (DEBUG) Log.d(TAG, "Failed to initialize qcRilJarLoader: $e")
-        }.getOrNull()
+        miRilHookCallbackClass =
+            miRilHookCallbackClass
+                ?: runCatching { miRilJarLoader?.loadClass(MIRILHOOKCALLBACK_CLASS_NAME) }
+                    .onFailure { e ->
+                        if (DEBUG) Log.d(TAG, "Failed to load miRilHookCallbackClass: $e")
+                    }
+                    .getOrNull()
 
-        qcRilHookCallbackClass = qcRilHookCallbackClass ?: runCatching {
-            qcRilJarLoader?.loadClass(QCRILHOOKCALLBACK_CLASS_NAME)
-        }.onFailure { e ->
-            if (DEBUG) Log.d(TAG, "Failed to load qcRilHookCallbackClass: $e")
-        }.getOrNull()
+        miRilHookCallbackObj =
+            miRilHookCallbackObj
+                ?: runCatching {
+                        Proxy.newProxyInstance(
+                            miRilJarLoader,
+                            arrayOf(miRilHookCallbackClass),
+                            MiRilHookCallbackProxy(),
+                        )
+                    }
+                    .onFailure { e ->
+                        if (DEBUG) Log.d(TAG, "Failed to create miRilHookCallbackObj: $e")
+                    }
+                    .getOrNull()
 
-        qcRilHookCallbackObj = qcRilHookCallbackObj ?: runCatching {
-            Proxy.newProxyInstance(
-                context.classLoader,
-                arrayOf(qcRilHookCallbackClass),
-                QcRilHookCbMethodProxy()
-            )
-        }.onFailure { e ->
-            if (DEBUG) Log.d(TAG, "Failed to initialize qcRilHookCallbackObj: $e")
-        }.getOrNull()
-
-        miRilHookObj = miRilHookObj ?: miRilHookClass?.getConstructor(
-            Context::class.java,
-            qcRilHookCallbackClass,
-            String::class.java
-        )?.let { constructor ->
-            runCatching {
-                constructor.newInstance(
-                    context,
-                    qcRilHookCallbackObj,
-                    ActivityThread.currentPackageName()
-                )
-            }.onFailure { e ->
-                if (DEBUG) Log.d(TAG, "Failed to initialize miRilHookObj: $e")
-            }.getOrNull()
-        }
+        miRilHookObj =
+            miRilHookObj
+                ?: miRilHookClass
+                    ?.getConstructor(
+                        Context::class.java,
+                        miRilHookCallbackClass,
+                        String::class.java,
+                    )
+                    ?.let { constructor ->
+                        runCatching {
+                                constructor.newInstance(
+                                    context,
+                                    miRilHookCallbackObj,
+                                    context.packageName,
+                                )
+                            }
+                            .onFailure { e ->
+                                if (DEBUG) Log.d(TAG, "Failed to initialize miRilHookObj: $e")
+                            }
+                            .getOrNull()
+                    }
     }
 
     private fun callMiRilHookMethod(methodName: String, defObj: Any?, vararg args: Any?): Any? {
         return try {
-            val parameterTypes = args.map { it?.javaClass?.kotlin?.javaPrimitiveType ?: it?.javaClass }.toTypedArray()
+            val parameterTypes =
+                args
+                    .map { it?.javaClass?.kotlin?.javaPrimitiveType ?: it?.javaClass }
+                    .toTypedArray()
             miRilHookClass?.getMethod(methodName, *parameterTypes)?.invoke(miRilHookObj, *args)
         } catch (e: Exception) {
             if (DEBUG) Log.d(TAG, "callMiRilHookMethod failed: $methodName, error: $e")
@@ -191,6 +206,13 @@ class EsimController private constructor(private val context: Context) {
             when (methodName) {
                 "onQcRilHookReady" -> updateEuicc()
             }
+            return null
+        }
+    }
+
+    inner class MiRilHookCallbackProxy : InvocationHandler {
+        override fun invoke(proxy: Any, method: Method, args: Array<Any?>?): Any? {
+            if (DEBUG) Log.d(TAG, "MiRilHookCallbackProxy: ${method.name}")
             return null
         }
     }
