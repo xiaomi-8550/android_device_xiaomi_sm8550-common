@@ -20,7 +20,7 @@ from extract_utils.main import (
 
 namespace_imports = [
     'vendor/qcom/common/system/telephony',
-    'vendor/qcom/common/vendor/adreno-t',
+    'vendor/qcom/common/vendor/adreno/t',
     'vendor/qcom/common/vendor/display/5.15',
 ]
 
