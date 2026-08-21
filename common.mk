@@ -274,8 +274,8 @@ PRODUCT_PACKAGES += \
     Xiaomi8550WifiResMainline \
 
 # Parts
-PRODUCT_PACKAGES += \
-    XiaomiParts
+#PRODUCT_PACKAGES += \
+#    XiaomiParts
 
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
