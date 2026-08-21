@@ -484,7 +484,6 @@ vendor/lib64/libdisplayfeatureservice.so
 vendor/lib64/libeyecare.so
 vendor/lib64/libmi-stc-HW-modulate.so
 vendor/lib64/libmilut.so
-vendor/lib64/vendor.xiaomi.hardware.displayfeature@1.0.so;MODULE_SUFFIX=_vendor
 
 # Displayfeature (Config)
 vendor/etc/display/LUT.txt
@@ -576,7 +575,6 @@ product/priv-app/EuiccGoogle/EuiccGoogle.apk|f1b7f3906ed81c6555191e6a9d350377b97
 odm/lib64/vendor.xiaomi.hardware.fx.tunnel@1.0.so;MODULE_SUFFIX=_odm
 vendor/etc/vintf/manifest/fod.xml
 vendor/lib64/com.fingerprints.extension@3.0.so
-vendor/lib64/vendor.xiaomi.hardware.fingerprintextension@1.0.so;MODULE_SUFFIX=_vendor
 
 # FM
 vendor/etc/init/init.qti.fm.rc

@@ -19,6 +19,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'hardware/xiaomi',
     'vendor/qcom/common/system/telephony',
     'vendor/qcom/common/vendor/adreno/t',
     'vendor/qcom/common/vendor/display/5.15',
@@ -177,8 +178,6 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.latency@2.1',
         'vendor.qti.latency@2.2',
         'vendor.qti.latency@2.3',
-        'vendor.xiaomi.hardware.displayfeature@1.0',
-        'vendor.xiaomi.hardware.fingerprintextension@1.0',
     ): lib_fixup_vendor_suffix,
     (
         'libcamxcommonutils',
