@@ -51,9 +51,6 @@ lib_fixups: lib_fixups_user_type = {
     ): lib_fixup_odm_suffix,
     (
         'audio.primary.kalama',
-        'libsdm-color',
-        'libsdm-disp-vndapis',
-        'libsdmextension',
     ): lib_fixup_sm8550_suffix,
     (
         'com.qualcomm.qti.dpm.api@1.0',

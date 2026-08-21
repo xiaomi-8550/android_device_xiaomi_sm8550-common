@@ -434,7 +434,7 @@ vendor/lib64/libdiag.so
 vendor/lib64/vendor.qti.diaghal@1.0.so;MODULE_SUFFIX=_vendor
 
 # Display
-vendor/bin/hw/vendor.qti.hardware.display.composer-service;MODULE_SUFFIX=_sm8550;OVERRIDES=vendor.qti.hardware.display.composer-service
+vendor/bin/hw/vendor.qti.hardware.display.composer-service;MAKE_COPY_RULE_ONLY
 vendor/etc/init/vendor.qti.hardware.display.composer-service.rc
 vendor/etc/vintf/manifest/vendor.qti.hardware.display.composer-service.xml
 vendor/lib64/libdisplayconfig.qti.so
@@ -444,11 +444,11 @@ vendor/lib64/libhdrdynamic.so
 vendor/lib64/libhdrdynamicootf.so
 vendor/lib64/libhdrvivid.so
 vendor/lib64/libsdedrm.so
-vendor/lib64/libsdm-color.so;MODULE_SUFFIX=_sm8550;OVERRIDES=libsdm-color
-vendor/lib64/libsdm-disp-vndapis.so;MODULE_SUFFIX=_sm8550;OVERRIDES=libsdm-disp-vndapis
+vendor/lib64/libsdm-color.so;MAKE_COPY_RULE_ONLY
+vendor/lib64/libsdm-disp-vndapis.so;MAKE_COPY_RULE_ONLY
 vendor/lib64/libsdmcore.so
 vendor/lib64/libsdmdal.so
-vendor/lib64/libsdmextension.so;MODULE_SUFFIX=_sm8550;OVERRIDES=libsdmextension
+vendor/lib64/libsdmextension.so;MAKE_COPY_RULE_ONLY
 vendor/lib64/libsdmutils.so
 
 # Displayfeature
@@ -608,7 +608,7 @@ vendor/etc/gps.conf
 vendor/etc/lowi.conf
 vendor/etc/sap.conf
 vendor/etc/xtwifi.conf
-vendor/lib64/hw/android.hardware.gnss-aidl-impl-qti.so;MODULE_SUFFIX=_sm8550;OVERRIDES=android.hardware.gnss-aidl-impl-qti
+vendor/lib64/hw/android.hardware.gnss-aidl-impl-qti.so;MAKE_COPY_RULE_ONLY
 vendor/lib64/libMiVDR.so
 vendor/lib64/libbatching.so
 vendor/lib64/libcdfw.so
@@ -1447,7 +1447,7 @@ vendor/firmware/vpu33_4v.mbn
 vendor/firmware/vpu33_4v_unsigned.mbn
 
 # WiFi
-vendor/bin/cnss-daemon;MODULE_SUFFIX=_sm8550;DISABLE_CHECKELF;OVERRIDES=cnss-daemon
+vendor/bin/cnss-daemon;MAKE_COPY_RULE_ONLY
 vendor/etc/wifi/kiwi_v2/WCNSS_qcom_cfg.ini
 vendor/etc/wifi/icm.conf
 vendor/etc/wifi/p2p_supplicant_overlay.conf
