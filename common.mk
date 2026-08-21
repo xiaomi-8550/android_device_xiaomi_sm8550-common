@@ -239,8 +239,6 @@ PRODUCT_ODM_PROPERTIES += \
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.nfc.port=I2C
-else
-$(call inherit-product, vendor/nxp/opensource/commonsys/packages/apps/Nfc/nfc_system_product.mk)
 endif
 
 PRODUCT_COPY_FILES += \
