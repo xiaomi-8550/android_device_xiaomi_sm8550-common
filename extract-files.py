@@ -205,6 +205,8 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/hw/audio.primary.kalama.so',
         'vendor/lib64/libcodec2_soft_ac4dec.so',
         'vendor/lib64/libcodec2_soft_ddpdec.so',
+        'vendor/lib64/libcodec2_soft_mihc_dec.so',
+        'vendor/lib64/libcodec2_soft_mihc_enc.so',
         'vendor/lib64/libDecoderProcessor.so',
         'vendor/lib64/libdlbdsservice.so',
         'vendor/lib64/libdlbpreg.so',
